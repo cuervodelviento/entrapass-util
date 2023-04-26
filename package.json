@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A library that can run the same encryption that entrapassutil.dll so you can login and communicate with the EntraPass SmartService API",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "test"
   },
@@ -13,5 +14,11 @@
     "encryption"
   ],
   "author": "Angel Duarte",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
 }
