@@ -1,5 +1,5 @@
 
-const { encrypt, incrementBytes, getKeyArraySize, getLoginParams } = require('../src/index');
+const { encrypt, incrementBytes, getKeyArraySize, getLoginParams } = require('./index');
 
 jest.mock('uuid', () => ({
     v4: jest.fn().mockReturnValue('0421cc35-ef84-4261-a6ea-86cb5dba9f12'),
