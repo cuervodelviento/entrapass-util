@@ -3,11 +3,15 @@ This is a small package that contains the encryption method by the EntraPass Sma
 
 # usage
 You can do
-const {encrypt} = require('entrapass-util');
+```
+const {encrypt,login} = require('entrapass-util');
 
-it takes two atributes, a string and a encryption key
+// it takes two atributes, a string and a encryption key
 
-to login you can call
+// to login you can call
+const plaintext = "teststring";
+const encryptionKey = "usuallyPasworD";
+const cyphertext = encrypted(plaintext,encryptionKey);
 
 const input = {
     username: 'username',
@@ -16,12 +20,12 @@ const input = {
 };
 const output = getLoginParams(input);
 
-Where output has
+// Where output has
 {
   encryptedUsername: 'A3k7n9ICwkD2zfMgLbULog==',
   encryptedPassword: '2RujkTtjViToyXR+3gU8uEbE9kCZrJxlqc7GS6nz7uY=',
   encryptedConnectedProgramUUID:
   'RdpRxdhK5m8TJrBudS10QGpq+n41aDDRra/mpFgnay2rPZLY+TP8wCItURGD4Z+MfzU5fThfka94UGMrfsg3jRBS5pyE54YKVe030UrCE6c=',
 }
-
+```
 for you to use in your request, connectedProgram is an integration key that you have to get from https://connectedpartnerprogram.partnerproducts.com/
