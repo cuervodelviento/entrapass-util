@@ -1,5 +1,9 @@
 
-const { encrypt, incrementBytes, getKeyArraySize } = require('../src/index');
+const { encrypt, incrementBytes, getKeyArraySize, getLoginParams } = require('../src/index');
+
+jest.mock('uuid', () => ({
+    v4: jest.fn().mockReturnValue('0421cc35-ef84-4261-a6ea-86cb5dba9f12'),
+}));
 
 describe('EntraPass Encryption', () => {
     test('key array size should be 16', () => {
@@ -41,18 +45,37 @@ describe('EntraPass Encryption', () => {
         expect(output).toEqual(outputBytes);
     });
 
-    test('Calling Encrypt with username:smartlink and pwd:00000000 should render="SbnWNQT+AEr3lwYrbwmjfA=="', () => {
-        const username = 'smartlink';
-        const password = '00000000';
+    test('Calling Encrypt with username:smartlink and pwd:00000000 should render="wKm14Xc9HrPIuPU2NeaBdg=="', () => {
+        const username = 'username';
+        const password = 'wackypAssw0rd';
         const encrypted = encrypt(username, password);
-        expect(encrypted).toBe('SbnWNQT+AEr3lwYrbwmjfA==');
+        expect(encrypted).toBe('wKm14Xc9HrPIuPU2NeaBdg==');
     });
 
-    test('Calling Encrypt with username:smartlink and pwd:miXed@passw0rD0000 should render="SMkvr/3z57SLcGWCh3QrUw=="', () => {
-        const username = 'smartlink';
+    test('Calling Encrypt with username:smartlink and pwd:miXed@passw0rD0000 should render="A3k7n9ICwkD2zfMgLbULog=="', () => {
+        const username = 'username';
         const password = 'miXed@passw0rD0000';
         const encrypted = encrypt(username, password);
-        expect(encrypted).toBe('SMkvr/3z57SLcGWCh3QrUw==');
+        expect(encrypted).toBe('A3k7n9ICwkD2zfMgLbULog==');
+    });
+
+    test('login params should be constructed properly using EntraPass Encryption', () => {
+        const input = {
+            username: 'username',
+            password: 'miXed@passw0rD0000',
+            connectedProgram: 'a3533be0-4ba6-4d4c-82f6-cf3ebaaa6d86',
+        };
+
+
+        const expectedOutput = {
+            encryptedUsername: 'A3k7n9ICwkD2zfMgLbULog==',
+            encryptedPassword: '2RujkTtjViToyXR+3gU8uEbE9kCZrJxlqc7GS6nz7uY=',
+            encryptedConnectedProgramUUID:
+                'RdpRxdhK5m8TJrBudS10QGpq+n41aDDRra/mpFgnay2rPZLY+TP8wCItURGD4Z+MfzU5fThfka94UGMrfsg3jRBS5pyE54YKVe030UrCE6c=',
+        };
+
+        const output = getLoginParams(input);
+        expect(output).toEqual(expectedOutput);
     });
 });
 

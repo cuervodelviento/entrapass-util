@@ -5,6 +5,7 @@ const IV_ARRAY_SIZE = 16;
 const encoder = new TextEncoder();
 
 const crypto = require("crypto");
+const { v4 } = require('uuid');
 
 function encrypt(toEncrypt, key) {
   const keyArraySize = getKeyArraySize(key);
@@ -41,4 +42,22 @@ function getKeyArraySize(key) {
     : MIN_KEY_SIZE;
 }
 
-module.exports = { encrypt, incrementBytes, getKeyArraySize };
+
+function getLoginParams({
+  username,
+  password,
+  connectedProgram,
+}) {
+  const uid = v4();
+
+  return {
+    encryptedUsername: encrypt(username.toLowerCase(), password),
+    encryptedPassword: encrypt(password, password),
+    encryptedConnectedProgramUUID: encrypt(
+      connectedProgram + ',' + uid,
+      password,
+    ),
+  };
+};
+
+module.exports = { encrypt, incrementBytes, getKeyArraySize, getLoginParams };
