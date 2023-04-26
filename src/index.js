@@ -41,4 +41,4 @@ function getKeyArraySize(key) {
     : MIN_KEY_SIZE;
 }
 
-module.exports = encrypt;
+module.exports = { encrypt, incrementBytes, getKeyArraySize };
