@@ -1,17 +1,23 @@
 # entrapass-util
+
 This is a small package that contains the encryption method by the EntraPass SmartLink service where the login params need to be encrypted each time
 
 # usage
+
 You can do
+
 ```
-const {encrypt,login} = require('entrapass-util');
+const {encrypt,getLoginParams} = require('entrapass-util');
 
 // it takes two atributes, a string and a encryption key
 
-// to login you can call
+
 const plaintext = "teststring";
 const encryptionKey = "usuallyPasworD";
 const cyphertext = encrypted(plaintext,encryptionKey);
+
+
+// to login you can call
 
 const input = {
     username: 'username',
@@ -28,4 +34,5 @@ const output = getLoginParams(input);
   'RdpRxdhK5m8TJrBudS10QGpq+n41aDDRra/mpFgnay2rPZLY+TP8wCItURGD4Z+MfzU5fThfka94UGMrfsg3jRBS5pyE54YKVe030UrCE6c=',
 }
 ```
+
 for you to use in your request, connectedProgram is an integration key that you have to get from https://connectedpartnerprogram.partnerproducts.com/
