@@ -1,12 +1,12 @@
 {
   "name": "entrapass-util",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A library that can run the same encryption that entrapassutil.dll so you can login and communicate with the EntraPass SmartService API",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "jest"
   },
+  "repository": "https://github.com/cuervodelviento/entrapass-util",
   "keywords": [
     "entrapass",
     "kantech",

@@ -7,14 +7,14 @@ This is a small package that contains the encryption method by the EntraPass Sma
 You can do
 
 ```
-const {encrypt,getLoginParams} = require('entrapass-util');
+const { encrypt, getLoginParams } = require('entrapass-util');
 
 // it takes two atributes, a string and a encryption key
 
 
 const plaintext = "teststring";
 const encryptionKey = "usuallyPasworD";
-const cyphertext = encrypted(plaintext,encryptionKey);
+const cyphertext = encrypt(plaintext, encryptionKey);
 
 
 // to login you can call
@@ -33,6 +33,10 @@ const output = getLoginParams(input);
   encryptedConnectedProgramUUID:
   'RdpRxdhK5m8TJrBudS10QGpq+n41aDDRra/mpFgnay2rPZLY+TP8wCItURGD4Z+MfzU5fThfka94UGMrfsg3jRBS5pyE54YKVe030UrCE6c=',
 }
+console.log(cyphertext);
+console.log(output);
 ```
+
+# info
 
 for you to use in your request, connectedProgram is an integration key that you have to get from https://connectedpartnerprogram.partnerproducts.com/
